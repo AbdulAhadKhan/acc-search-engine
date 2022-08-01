@@ -58,8 +58,8 @@ public class HomeView extends VerticalLayout {
         });
 
         searchComponent.searchButton.addClickListener(event -> {
-            String query = searchComponent.searchBar.getValue().replace("", "+");
-            getUI().get().getPage().setLocation("http://localhost:8010/search?searchKey=" + query);
+            String query = searchComponent.searchBar.getValue().replace(" ", "+");
+            getUI().get().getPage().setLocation("http://localhost:8010/search?searchkey=" + query);
         });
 
         setSizeFull();
