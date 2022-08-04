@@ -5,8 +5,10 @@ import com.acc.searchEngine.component.SearchComponent;
 import com.acc.searchEngine.component.SuggestionBoxComponent;
 import com.vaadin.flow.component.Unit;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.value.ValueChangeMode;
+import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
 import java.io.IOException;
@@ -14,10 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Route("")
+@PageTitle("Ebay Search Engine")
 public class HomeView extends VerticalLayout {
     AutoComplete autoComplete;
     SearchComponent searchComponent;
     SuggestionBoxComponent suggestionBox;
+    Image image;
 
     private Button buildButton(String label) {
         Button button = new Button(label);
@@ -41,6 +45,12 @@ public class HomeView extends VerticalLayout {
     }
 
     public HomeView() throws IOException {
+    	image = new Image("images/ebay.png", "eBay");
+    	image.setWidth(500, Unit.PIXELS);
+    	image.setHeight(400, Unit.PIXELS);
+        add(image);
+        
+        
         getStyle().set("background", "#EDEEF2");
         autoComplete = new AutoComplete("src/main/resources/engmix.txt");
 
@@ -50,6 +60,7 @@ public class HomeView extends VerticalLayout {
 
         suggestionBox = new SuggestionBoxComponent();
         add(suggestionBox);
+        
 
         searchComponent.searchBar.addValueChangeListener(event -> {
             List<String> suggestions = autoComplete.suggest(event.getValue());
