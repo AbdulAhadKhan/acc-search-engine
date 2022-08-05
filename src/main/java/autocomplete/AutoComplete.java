@@ -18,6 +18,7 @@ public class AutoComplete {
     }
 
     public List<String> suggest(String prefix) {
+        if (prefix.isEmpty()) return List.of();
         return wordTrie.suggest(prefix);
     }
 }
